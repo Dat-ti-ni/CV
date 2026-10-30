@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lại Thế Đạt | Software Engineer Portfolio & Web CV</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#06b6d4',
+              600: '#0284c7',
+              900: '#0c4a6e',
+            },
+            accent: {
+              purple: '#8b5cf6',
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+            },
+            dark: {
+              bg: '#0B0F17',
+              card: '#111827',
+              border: '#1F2937',
+              hover: '#374151'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0B0F17;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-nav {
+      background: rgba(11, 15, 23, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+   .text-gradient {
+    background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #ec4899 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 4px;
+    }
+
+    .toc-active {
+      color: #38bdf8 !important;
+      border-color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen text-slate-200 antialiased selection:bg-cyan-500 selection:text-slate-900">
+
+  <!-- BACKGROUND DECORATION -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <a href="#hero" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+            <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+              <span class="font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">ĐẠT</span>
+            </div>
+          </div>
+          <div>
+            <span class="font-bold text-white text-lg tracking-tight block">Lại Thế Đạt</span>
+            <span class="text-xs font-mono text-slate-400 block -mt-1">Software Developer</span>
+          </div>
+        </a>
+
+        <!-- NÚT TẢI / XEM CV PDF Ở TAB KHÁC -->
+        <div class="flex items-center space-x-3">
+          <a href="./CV_LaiTheDat.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-cyan-500/25 flex items-center space-x-2 no-underline">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Tải CV PDF</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAIN TOP TABLE OF CONTENTS BAR -->
+    <div class="border-t border-slate-800/80 bg-slate-950/60 backdrop-blur-md overflow-x-auto scrollbar-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex space-x-1 py-2 text-xs font-mono min-w-max" id="top-toc">
+          <a href="#hero" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <i class="fa-solid fa-house text-cyan-400"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="#about" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">01.</span>
+            <span>Giới thiệu</span>
+          </a>
+          <a href="#skills" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">02.</span>
+            <span>Kỹ năng chuyên môn</span>
+          </a>
+          <a href="#projects" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">03.</span>
+            <span>Dự án thực tế</span>
+          </a>
+          <a href="#showcase" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">04.</span>
+            <span>Visual Showcase</span>
+          </a>
+          <a href="#timeline" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">05.</span>
+            <span>Lộ trình & Định hướng</span>
+          </a>
+          <a href="#contact" class="toc-item px-3 py-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50 transition-all border border-transparent flex items-center space-x-1.5">
+            <span class="text-cyan-400 font-bold">06.</span>
+            <span>Liên hệ</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div id="cv-content">
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 space-y-28">
+
+      <!-- HERO SECTION -->
+      <section id="hero" class="pt-8 lg:pt-16 pb-8 min-h-[80vh] flex flex-col justify-center scroll-mt-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>Sinh viên Kỹ thuật Phần mềm — ĐH Lạc Hồng (2025 - 2029)</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+              Xin chào, tôi là <br>
+              <span class="text-gradient">Lại Thế Đạt</span>
+            </h1>
+
+            <div class="h-12 flex items-center font-mono text-xl sm:text-2xl text-slate-300">
+              <span class="text-cyan-400 mr-3">&gt;</span>
+              <span id="typing-text"></span>
+              <span class="animate-pulse text-cyan-400 font-bold">|</span>
+            </div>
+
+            <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+              Đam mê phát triển hệ thống phần mềm tối ưu, thiết kế cơ sở dữ liệu quan hệ chuyên sâu và xây dựng các giao diện web mượt mà. Đang tìm kiếm cơ hội thực tập & làm việc vị trí <strong class="text-white">Software Engineer / Backend Developer</strong>.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700">MS SQL Server</span>
+              <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700">Python Algorithms</span>
+              <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700">IoT & Wokwi</span>
+              <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700">MOS / IC3 (Certiport)</span>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:scale-[1.02] transition-all flex items-center space-x-2">
+                <span>Xem dự án của tôi</span>
+                <i class="fa-solid fa-arrow-down text-sm"></i>
+              </a>
+              <a href="#contact" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-envelope text-cyan-400"></i>
+                <span>Gửi tin nhắn</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-md">
+              <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur-2xl opacity-20 transform rotate-3"></div>
+              
+              <div class="relative glass-panel rounded-3xl p-6 border border-slate-800 space-y-6">
+                
+                <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center group">
+                  <img src="anhcuadat2025.jpg" alt="Lại Thế Đạt Portfolio" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+
+                  <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
+                    <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest block">LAC HONG University</span>
+                    <span class="text-lg font-bold text-white block">Lại Thế Đạt</span>
+                    <span class="text-xs text-slate-300">Ấp An Chu, Xã Bình Minh, Thành phố Đồng Nai</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 text-center">
+                  <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-mono text-lg font-bold text-cyan-400">2025-2029</div>
+                    <div class="text-[11px] text-slate-400">Niên khóa</div>
+                  </div>
+                  <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-mono text-xl font-bold text-purple-400">5+</div>
+                    <div class="text-[11px] text-slate-400">Dự án lớn</div>
+                  </div>
+                  <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-mono text-xl font-bold text-emerald-400">100%</div>
+                    <div class="text-[11px] text-slate-400">Nhiệt huyết</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 01. ABOUT ME -->
+      <section id="about" class="scroll-mt-28">
+        <div class="flex items-center space-x-3 mb-8">
+          <span class="font-mono text-cyan-400 text-lg font-bold">01.</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Giới Thiệu Bản Thân</h2>
+          <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-7 space-y-4 text-slate-300 leading-relaxed">
+            <p>
+              Tôi là <strong class="text-white">Lại Thế Đạt</strong>, sinh viên chuyên ngành Kỹ thuật Phần mềm / Công nghệ Thông tin tại <strong class="text-cyan-400">Đại học Lạc Hồng</strong> (niên khóa 2025 – 2029). 
+            </p>
+            <p>
+              Là một cá nhân có tinh thần tự giác cao, tư duy logic nhạy bén và khả năng chịu áp lực tốt trong học tập cũng như công việc. Tôi luôn đặt mục tiêu rõ ràng, duy trì tác phong làm việc kỷ luật, cẩn trọng trong từng chi tiết và có tinh thần trách nhiệm tuyệt đối với mọi nhiệm vụ được giao. Bên cạnh đó, tôi sở hữu khả năng tự học độc lập mạnh mẽ, nhanh chóng thích nghi với môi trường mới và luôn hào hứng tiếp thu các kiến thức tiên tiến để hoàn thiện bản thân mỗi ngày.
+            </p>
+
+            <div class="pt-4 grid grid-cols-2 gap-4 font-mono text-xs">
+              <div class="flex items-center space-x-2 text-slate-300">
+                <i class="fa-solid fa-angles-right text-cyan-400"></i>
+                <span>Trường: Đại Học Lạc Hồng</span>
+              </div>
+              <div class="flex items-center space-x-2 text-slate-300">
+                <i class="fa-solid fa-angles-right text-cyan-400"></i>
+                <span>Niên khóa: 2025 – 2029</span>
+              </div>
+              <div class="flex items-center space-x-2 text-slate-300">
+                <i class="fa-solid fa-angles-right text-cyan-400"></i>
+                <span>Địa chỉ cá nhân: Ấp An Chu, Xã Bình Minh, Thành phố Đồng Nai</span>
+              </div>
+              <div class="flex items-center space-x-2 text-slate-300">
+                <i class="fa-solid fa-angles-right text-cyan-400"></i>
+                <span>Ngoại ngữ: Tiếng Anh chuyên ngành</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-5 glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+            <h3 class="text-base font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-heart-pulse text-purple-400"></i>
+              <span>Sở thích & Lối sống</span>
+            </h3>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li class="flex items-start space-x-3">
+                <i class="fa-solid fa-futbol text-emerald-400 mt-1"></i>
+                <span><strong>Đá bóng:</strong> Thường xuyên đá bóng giao lưu cùng các bạn học quanh khu vực nơi sinh sống và tham gia các hoạt động thể thao.</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fa-solid fa-person-running text-cyan-400 mt-1"></i>
+                <span><strong>Chạy bộ:</strong> Duy trì chạy bộ thể dục vào những ngày nghỉ để giữ sức khỏe và tinh thần bền bỉ.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02. SKILLS -->
+      <section id="skills" class="scroll-mt-28">
+        <div class="flex items-center space-x-3 mb-8">
+          <span class="font-mono text-cyan-400 text-lg font-bold">02.</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Kỹ Năng Chuyên Môn</h2>
+          <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+            <div class="flex items-center justify-between mb-4">
+              <i class="fa-solid fa-database text-3xl text-blue-400"></i>
+              <span class="text-xs font-mono text-cyan-400 font-bold">Thành thạo</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">MS SQL Server & T-SQL</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Thiết kế ERD Diagram, viết Stored Procedures, Triggers, Views & truy vấn cơ sở dữ liệu khách sạn phức tạp.</p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+            <div class="flex items-center justify-between mb-4">
+              <i class="fa-brands fa-python text-3xl text-purple-400"></i>
+              <span class="text-xs font-mono text-purple-400 font-bold">Thành thạo</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Chứng chỉ Python Quốc tế</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Xây dựng ứng dụng Quản lý hồ sơ nhân viên, cấu trúc dữ liệu, giải thuật OOP & xử lý tập tin.</p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+            <div class="flex items-center justify-between mb-4">
+              <i class="fa-solid fa-microchip text-3xl text-emerald-400"></i>
+              <span class="text-xs font-mono text-emerald-400 font-bold">Khá</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Điện tử IoT & Wokwi</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Lập trình hệ thống cảm biến trên nền tảng Wokwi và thiết kế mạch thực tiễn ứng dụng.</p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+            <div class="flex items-center justify-between mb-4">
+              <i class="fa-solid fa-certificate text-3xl text-amber-400"></i>
+              <span class="text-xs font-mono text-amber-400 font-bold">Quốc tế</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Chứng Chỉ MS Quốc Tế (MOS)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">Chứng chỉ quốc tế Microsoft Office Specialist (Word, Excel, PowerPoint) cấp bởi Certiport, xử lý văn phòng & dữ liệu chuyên nghiệp.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. PROJECTS -->
+      <section id="projects" class="scroll-mt-28">
+        <div class="flex items-center space-x-3 mb-8">
+          <span class="font-mono text-cyan-400 text-lg font-bold">03.</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Dự Án Thực Tế & Học Tập Chuyên Sâu</h2>
+          <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-blue-400 text-sm font-mono"><i class="fa-solid fa-film"></i><span>MS SQL Server</span></div>
+            <h3 class="text-xl font-bold text-white">Hệ Thống QL_RapChieuPhim</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Xây dựng CSDL chuẩn 3NF quản lý rạp chiếu phim bao gồm lịch chiếu, bán vé và phân quyền nhân sự. Tích hợp Stored Procedures và Triggers tự động kiểm tra xung đột thời gian chiếu, tính toán doanh thu chi tiết.
+            </p>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-purple-400 text-sm font-mono"><i class="fa-brands fa-python"></i><span>Python 3</span></div>
+            <h3 class="text-xl font-bold text-white">Python Core Data Structures & Algorithms</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Phát triển thư viện thuật toán với Python: tự định nghĩa Singly Linked List, Stack điều hướng lịch sử, Queue quản lý playlist và Hash Table giải quyết xung đột bằng phương pháp nối chuỗi (Chaining) theo chuẩn OOP.
+            </p>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-indigo-400 text-sm font-mono"><i class="fa-solid fa-users-gear"></i><span>Python / Kỹ thuật lập trình</span></div>
+            <h3 class="text-xl font-bold text-white">Phần Mềm Quản Lý Hồ Sơ Nhân Viên</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Ứng dụng quản trị nhân sự OOP bằng Python. Hỗ trợ đầy đủ tính năng CRUD, tìm kiếm thông minh theo mã định danh, phân loại hợp đồng và tích hợp cơ chế đọc/ghi file an toàn (JSON/CSV) lưu trữ dữ liệu bền vững.
+            </p>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-emerald-400 text-sm font-mono"><i class="fa-solid fa-microchip"></i><span>Điện tử IoT / Wokwi</span></div>
+            <h3 class="text-xl font-bold text-white">Mô Hình Cảm Biến IoT (Wokwi & Mạch Thực Tiễn)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Kết hợp mô phỏng Wokwi và lắp ráp mạch thực tiễn với vi điều khiển ESP32/Arduino đọc cảm biến thời gian thực (nhiệt độ DHT22, ánh sáng LDR), kích hoạt cảnh báo tự động qua LED, Buzzer và Relay.
+            </p>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-cyan-400 text-sm font-mono"><i class="fa-solid fa-hotel"></i><span>MS SQL Server</span></div>
+            <h3 class="text-xl font-bold text-white">Hệ Thống CSDL Quản Lý Khách Sạn</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              CSDL quan hệ quản lý phòng, khách hàng, đặt phòng và hóa đơn. Tối ưu hóa với Stored Procedures tính tiền tự động, Trigger kiểm tra trạng thái phòng trống tránh đặt trùng và View thống kê doanh thu định kỳ.
+            </p>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden p-6 space-y-4">
+            <div class="flex items-center space-x-2 text-amber-400 text-sm font-mono"><i class="fa-solid fa-laptop-file"></i><span>Tin học đại cương</span></div>
+            <h3 class="text-xl font-bold text-white">Phương Pháp Học & Xử Lý Tin Học Văn Phòng</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Đúc kết phương pháp học tập và chuẩn hóa kỹ năng văn phòng nâng cao: tự động hóa bảng tính với hàm Excel phức tạp (VLOOKUP, INDEX/MATCH, Pivot Table), định dạng văn bản chuẩn khoa học và trộn thư phục vụ báo cáo đồ án.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. VISUAL SHOWCASE -->
+      <section id="showcase" class="scroll-mt-28">
+        <div class="flex items-center space-x-3 mb-8">
+          <span class="font-mono text-cyan-400 text-lg font-bold">04.</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Visual Showcase</h2>
+          <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 space-y-3">
+            <div class="aspect-video rounded-xl overflow-hidden bg-slate-900">
+              <img src="anh1.jpg" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-bold text-white text-sm flex items-center space-x-2"><i class="fa-solid fa-code text-cyan-400"></i><span>VS Code IDE Environment</span></h4>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 space-y-3">
+            <div class="aspect-video rounded-xl overflow-hidden bg-slate-900">
+              <img src="sql.png" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-bold text-white text-sm flex items-center space-x-2"><i class="fa-solid fa-server text-blue-400"></i><span>MS SQL Server Management</span></h4>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 space-y-3">
+            <div class="aspect-video rounded-xl overflow-hidden bg-slate-900">
+              <img src="figma.jpg" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-bold text-white text-sm flex items-center space-x-2"><i class="fa-solid fa-pen-ruler text-purple-400"></i><span>Figma UI Wireframe</span></h4>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. TIMELINE & ASPIRATIONS -->
+      <section id="timeline" class="scroll-mt-28">
+        <div class="flex items-center space-x-3 mb-8">
+          <span class="font-mono text-cyan-400 text-lg font-bold">05.</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Lộ Trình Học Tập & Định Hướng Tương Lai</h2>
+          <div class="h-px bg-slate-800 flex-1 ml-4"></div>
+        </div>
+
+        <div class="relative border-l-2 border-slate-800 ml-4 md:ml-8 space-y-8 pl-6">
+          
+          <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-3">
+            <span class="text-xs font-mono text-cyan-400 font-bold flex items-center space-x-1.5"><i class="fa-solid fa-calendar-days text-cyan-400"></i><span>2025 – 2026 — Giai đoạn Nền tảng Kỹ thuật & Học thuật Đại cương</span></span>
+            <h3 class="text-lg font-bold text-white">Xây dựng Gốc rễ Vững chắc tại Đại học Lạc Hồng</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Tập trung hoàn thành xuất sắc các học phần cốt lõi của sinh viên năm nhất và năm hai chuyên ngành Kỹ thuật Phần mềm. Xây dựng tư duy giải quyết vấn đề thông qua Kỹ thuật lập trình Python nâng cao, cấu trúc dữ liệu và giải thuật. Làm chủ hệ thống cơ sở dữ liệu quan hệ Microsoft SQL Server thông qua các đồ án thực tế (Quản lý rạp chiếu phim, quản lý khách sạn, hồ sơ nhân viên). Đồng thời, hoàn thiện kỹ năng phần cứng cơ bản với Điện tử IoT trên Wokwi, mạch thực tiễn, củng cố kiến thức mạng máy tính (VLSM/CIDR) và đạt các chứng chỉ tin học văn phòng quốc tế MOS nhằm tạo đà vững chắc cho các giai đoạn chuyên sâu tiếp theo.
+            </p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-emerald-500/30 space-y-3">
+            <span class="text-xs font-mono text-emerald-400 font-bold flex items-center space-x-1.5"><i class="fa-solid fa-briefcase text-emerald-400"></i><span>2027 – 2028 — Giai đoạn Chuyên Sâu & Trải Nghiệm Thực Tập</span></span>
+            <h3 class="text-lg font-bold text-white">Chinh phục Vị trí Junior Software / Backend Developer</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Chuyển dịch từ lý thuyết hàn lâm sang môi trường phát triển phần mềm doanh nghiệp chuyên nghiệp. Chủ động tìm kiếm và ứng tuyển các vị trí thực tập sinh (Intern/Junior) tại các công ty công nghệ uy tín. Tập trung mở rộng stack công nghệ với lập trình Web Backend hiện đại (FastAPI, Django, Node.js), làm quen sâu với mô hình RESTful API, hệ thống điều khiển phiên bản Git/GitHub nâng cao, quy trình CI/CD, Docker hóa ứng dụng và phương pháp làm việc nhóm chuẩn Agile/Scrum. Đây là bước đệm quan trọng để tích lũy kinh nghiệm thực tế, hoàn thiện kỹ năng mềm và mở rộng mạng lưới quan hệ trong ngành.
+            </p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-purple-500/30 space-y-3">
+            <span class="text-xs font-mono text-purple-400 font-bold flex items-center space-x-1.5"><i class="fa-solid fa-graduation-cap text-purple-400"></i><span>2029 — Giai đoạn Tốt Nghiệp & Nhận Bằng Kỹ Sư</span></span>
+            <h3 class="text-lg font-bold text-white">Bảo vệ Thành công Đồ án Tốt nghiệp & Khởi đầu Sự nghiệp Chính thức</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Hoàn thành toàn bộ chương trình đào tạo chính quy chuyên ngành Kỹ thuật Phần mềm tại Đại học Lạc Hồng với kết quả cao. Triển khai và bảo vệ xuất sắc Đồ án Tốt nghiệp mang tính ứng dụng thực tiễn lớn, tích hợp các công nghệ phần mềm tiên tiến. Nhận bằng Kỹ sư Công nghệ thông tin / Kỹ thuật Phần mềm chính thức, sẵn sàng gia nhập thị trường lao động nhân lực chất lượng cao với tư thế của một lập trình viên chuyên nghiệp, kỷ luật, giàu nhiệt huyết và có năng lực tự chủ công nghệ vững vàng.
+            </p>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl border border-amber-500/30 space-y-3">
+            <span class="text-xs font-mono text-amber-400 font-bold flex items-center space-x-1.5"><i class="fa-solid fa-rocket text-amber-400"></i><span>2029+ — Giai đoạn Tăng Trưởng & Định Hướng Dài Hạn</span></span>
+            <h3 class="text-lg font-bold text-white">Vươn lên Vị trí Software Engineer Chuyên Sâu & System Architect</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Định hướng phát triển dài hạn trở thành một Kỹ sư Phần mềm Cấp cao (Senior Software Engineer) chuyên sâu về mảng Backend Architecture và Distributed Systems. Không ngừng cập nhật các xu hướng công nghệ mới về Điện toán Đám mây (AWS, GCP), kiến trúc Microservices và tối ưu hóa hệ thống hiệu năng cao. Xa hơn nữa, nuôi dưỡng hoài bão hướng tới vai trò Kiến trúc sư Hệ thống (System Architect), đủ năng lực thiết kế, vận hành và quản trị các hạ tầng công nghệ quy mô lớn, mang lại giá trị thiết thực cho cộng đồng và doanh nghiệp.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-<!-- 06. LIÊN HỆ HỢP TÁC -->
+      <section id="contact" class="py-20 bg-slate-950 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Liên Hệ Hợp Tác & Cơ Hội Việc Làm
+            </h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+              Tôi luôn sẵn sàng lắng nghe các cơ hội thực tập, vị trí Junior Software/Backend Developer hoặc các dự án công nghệ thú vị. Hãy kết nối với tôi!
+            </p>
+          </div>
+
+          <!-- 4 Ô CHUNG MỘT HÀNG (GRID 4 CỘT) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            
+            <!-- Card Email -->
+           <!-- Card Email (Kết hợp: Bấm để sao chép & Mở ứng dụng gửi mail) -->
+            <div onclick="navigator.clipboard.writeText('laid9445@gmail.com'); alert('Đã sao chép email: laid9445@gmail.com vào bộ nhớ tạm!'); window.location.href='mailto:laid9445@gmail.com?subject=Liên%20hệ%20hợp%20tác%20từ%20Portfolio&body=Xin%20chào%20Lại%20Thế%20Đạt,';" 
+                 class="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 flex flex-col justify-between cursor-pointer">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-envelope text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-200 mb-1">Email Cá Nhân</h3>
+                <p class="text-slate-400 text-xs break-all">laid9445@gmail.com</p>
+              </div>
+              <span class="mt-4 text-xs font-mono text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Sao chép & Mở App Mail <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+
+            <!-- Card Điện thoại / Zalo -->
+            <!-- Card Điện thoại / Zalo (Đã liên kết trực tiếp tới Zalo) -->
+              <a href="https://zalo.me/0363124730" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold text-slate-200 mb-1">Điện thoại / Zalo</h3>
+                  <p class="text-slate-400 text-xs">036 312 4730</p>
+                </div>
+                <span class="mt-4 text-xs font-mono text-emerald-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Mở Zalo kết bạn ngay <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+
+           <!-- Card Địa chỉ (Đã tích hợp liên kết Google Maps) -->
+              <a href="https://www.google.com/maps/place/Nh%C3%A0+Th%E1%BB%9D+Gi%C3%A1o+X%E1%BB%A9+An+Chu/@10.9729263,106.9530006,15.75z/data=!4m11!1m3!2m2!1z4bqlcCBhbiBjaHUsICBiw6xuaCBtaW5oLCDEkeG7k25nIG5haQ!6e1!3m6!1s0x3174e7879d34600b:0x2c2b76f341c09d4a!8m2!3d10.9677001!4d106.9534032!15sCiXhuqVwIGFuIGNodSwgIGLDrG5oIG1pbmgsIMSR4buTbmcgbmFpWiQiIuG6pXAgYW4gY2h1IGLDrG5oIG1pbmggxJHhu5NuZyBuYWmSAQ9jYXRob2xpY19jaHVyY2iaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnR3TVdORmRFbGpiRTUxWWxVNVdrNXVhR2xVTTBadFQxWldlVll4UlJBQuABAPoBBAgAEEE!16s%2Fg%2F11fl08w46q?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-location-dot text-xl"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold text-slate-200 mb-1">Địa Chỉ</h3>
+                  <p class="text-slate-400 text-xs">Ấp An Chu, Xã Bình Minh, Thành phố Đồng Nai</p>
+                </div>
+                <span class="mt-4 text-xs font-mono text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Xem bản đồ Google Maps <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+
+            <!-- Card Mạng xã hội -->
+            <!-- Card Mạng xã hội (Đã tối ưu hiển thị Tooltip khi hover) -->
+              <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between relative overflow-visible">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-share-nodes text-xl"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold text-slate-200 mb-1">Mạng Xã Hội</h3>
+                  
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    
+                    <!-- Facebook -->
+                    <div class="relative group">
+                      <a href="https://www.facebook.com/laidat1811" target="_blank" rel="noopener noreferrer" 
+                         class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-blue-600 text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-2 shadow-sm">
+                        <i class="fa-brands fa-facebook text-sm"></i> Facebook
+                      </a>
+                      <!-- Tooltip -->
+                      <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50 pointer-events-none">
+                        <div class="bg-slate-950 text-slate-200 text-[11px] font-mono px-3 py-1.5 rounded-lg border border-slate-700 shadow-2xl whitespace-nowrap">
+                          Mở Facebook Cá Nhân ↗
+                        </div>
+                        <div class="w-2 h-2 bg-slate-950 border-r border-b border-slate-700 rotate-45 -mt-1"></div>
+                      </div>
+                    </div>
+
+                    <!-- GitHub -->
+                    <div class="relative group">
+                      <a href="https://github.com/Dat-ti-ni" target="_blank" rel="noopener noreferrer" 
+                         class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-2 shadow-sm">
+                        <i class="fa-brands fa-github text-sm"></i> GitHub
+                      </a>
+                      <!-- Tooltip -->
+                      <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50 pointer-events-none">
+                        <div class="bg-slate-950 text-slate-200 text-[11px] font-mono px-3 py-1.5 rounded-lg border border-slate-700 shadow-2xl whitespace-nowrap">
+                          Khám phá Source Code ↗
+                        </div>
+                        <div class="w-2 h-2 bg-slate-950 border-r border-b border-slate-700 rotate-45 -mt-1"></div>
+                      </div>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="relative group">
+                      <a href="https://www.instagram.com/ltdat207/" target="_blank" rel="noopener noreferrer" 
+                         class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-cyan-700 text-xs font-medium transition-all text-slate-300 hover:text-white flex items-center gap-2 shadow-sm">
+                        <i class="fa-brands fa-instagram text-sm"></i> Instagram
+                      </a>
+                      <!-- Tooltip -->
+                      <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50 pointer-events-none">
+                        <div class="bg-slate-950 text-slate-200 text-[11px] font-mono px-3 py-1.5 rounded-lg border border-slate-700 shadow-2xl whitespace-nowrap">
+                          Xem Hồ Sơ Cá Nhân ↗
+                        </div>
+                        <div class="w-2 h-2 bg-slate-950 border-r border-b border-slate-700 rotate-45 -mt-1"></div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <span class="mt-4 text-xs font-mono text-slate-500">Kết nối chuyên nghiệp</span>
+              </div>
+
+          </div>
+
+          <!-- KHUNG GỬI TIN NHẮN NHANH Ở DƯỚI -->
+          <!-- Form nhắn tin (Đã cập nhật thêm Tên công ty và Số điện thoại) -->
+            <div class="p-8 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-900/90 border border-slate-800 shadow-xl flex flex-col justify-between">
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Gửi Tin Nhắn Nhanh</h3>
+                <p class="text-slate-400 text-sm mb-6">Bạn có công việc hoặc thắc mắc? Để lại lời nhắn, tôi sẽ phản hồi sớm nhất.</p>
+                
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã gửi tin nhắn! Tôi sẽ phản hồi sớm.');">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-mono text-slate-400 mb-1">HỌ VÀ TÊN</label>
+                      <input type="text" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="Nhập tên của bạn...">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-mono text-slate-400 mb-1">SỐ ĐIỆN THOẠI</label>
+                      <input type="tel" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="Nhập số điện thoại...">
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-mono text-slate-400 mb-1">TÊN CÔNG TY</label>
+                      <input type="text" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="Tên công ty...">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-mono text-slate-400 mb-1">EMAIL LIÊN HỆ</label>
+                      <input type="email" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors" placeholder="name@example.com">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-mono text-slate-400 mb-1">NỘI DUNG</label>
+                    <textarea rows="3" required class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors resize-none" placeholder="Lời nhắn hoặc cơ hội hợp tác..."></textarea>
+                  </div>
+
+                  <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/20 cursor-pointer">
+                    Gửi Tin Nhắn Ngay
+                  </button>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- PHẦN CHÂN TRANG (FOOTER) -->
+  <footer class="site-footer" style="background-color: #080c14; border-top: 1px solid #1e293b; padding: 50px 20px 20px 20px; font-family: 'Inter', sans-serif; color: #94a3b8; margin-top: 60px;">
+    <div class="footer-container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      
+      <div class="footer-col" style="flex: 1; min-width: 250px;">
+        <h3 style="color: #ffffff; font-size: 14px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #38bdf8; display: inline-block; padding-bottom: 6px; font-weight: 700;">LẠI THẾ ĐẠT</h3>
+        <p style="font-size: 13px; line-height: 1.6; margin-bottom: 6px;">Sinh viên Kỹ thuật Phần mềm</p>
+        <p style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;">SĐT: 036 312 4730</p>
+        <p style="font-size: 13px; line-height: 1.6; margin-bottom: 6px;">Email: <a href="mailto:laid9445@gmail.com" style="color: #38bdf8; text-decoration: none;">laid9445@gmail.com</a></p>
+        <p style="font-size: 13px; line-height: 1.6; margin-bottom: 15px;">Địa chỉ: Ấp An Chu, xã Bình Minh, Thành phố Đồng Nai</p>
+
+        <div class="flex items-center gap-3 mt-4">
+          <div class="relative group/tooltip">
+            <a href="https://www.facebook.com/laidat1811" target="_blank" rel="noopener noreferrer" 
+               class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-blue-600 text-xs font-medium text-slate-300 hover:text-white transition-colors border border-slate-800 flex items-center gap-1.5">
+              <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/tooltip:flex flex-col items-center z-30 pointer-events-none">
+              <div class="bg-slate-950 text-slate-200 text-[11px] font-mono px-3 py-1.5 rounded-lg border border-slate-700 shadow-xl whitespace-nowrap">
+                Mở Facebook Cá Nhân ↗
+              </div>
+              <div class="w-2 h-2 bg-slate-950 border-r border-b border-slate-700 rotate-45 -mt-1"></div>
+            </div>
+          </div>
+
+          <div class="relative group/tooltip">
+            <a href="https://zalo.me/0363124730" target="_blank" rel="noopener noreferrer" 
+               class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-cyan-600 text-xs font-medium text-slate-300 hover:text-white transition-colors border border-slate-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-comment-sms text-cyan-400"></i> Zalo
+            </a>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/tooltip:flex flex-col items-center z-30 pointer-events-none">
+              <div class="bg-slate-950 text-slate-200 text-[11px] font-mono px-3 py-1.5 rounded-lg border border-slate-700 shadow-xl whitespace-nowrap">
+                Mở Zalo / Kết Bạn ↗
+              </div>
+              <div class="w-2 h-2 bg-slate-950 border-r border-b border-slate-700 rotate-45 -mt-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col" style="flex: 1; min-width: 260px;">
+        <h3 style="color: #ffffff; font-size: 14px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #38bdf8; display: inline-block; padding-bottom: 6px; font-weight: 700;">Đào Tạo & Học Vấn</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.8;">
+          <li><i class="fa-solid fa-graduation-cap text-cyan-400 mr-2"></i>Khoa Công nghệ Thông tin</li>
+          <li><i class="fa-solid fa-graduation-cap text-cyan-400 mr-2"></i>Ngành Kỹ thuật Phần mềm</li>
+          <li><i class="fa-solid fa-building-columns text-cyan-400 mr-2"></i>Đại học Lạc Hồng (Niên khóa: 2025 - 2029)</li>
+          <li><i class="fa-solid fa-location-dot text-cyan-400 mr-2"></i><strong>Địa chỉ trường:</strong> Số 10 Huỳnh Văn Nghệ, phường Trấn Biên, Thành phố Đồng Nai.</li>
+        </ul>
+      </div>
+
+      <div class="footer-col" style="flex: 1; min-width: 220px;">
+        <h3 style="color: #ffffff; font-size: 14px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #38bdf8; display: inline-block; padding-bottom: 6px; font-weight: 700;">Chứng Chỉ & Năng Lực</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.8;">
+          <li><i class="fa-solid fa-certificate text-amber-400 mr-2"></i>Chứng chỉ MOS Quốc tế (Certiport)</li>
+          <li><i class="fa-solid fa-database text-blue-400 mr-2"></i>MS SQL Server & T-SQL Database</li>
+          <li><i class="fa-brands fa-python text-purple-400 mr-2"></i>Chứng chỉ Python Quốc tế (ASU - USA)</li>
+          <li><i class="fa-solid fa-microchip text-emerald-400 mr-2"></i>Mô phỏng IoT & Wokwi</li>
+        </ul>
+      </div>
+
+      <div class="footer-col" style="flex: 0 1 240px;">
+        <img src="tải xuống.png" alt="Ảnh tùy chỉnh" style="display: block; max-width: 100%; height: auto; border-radius: 8px;">
+      </div>
+
+    </div>
+    
+    <div class="footer-bottom" style="max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px; border-top: 1px solid #1e293b; text-align: center; font-size: 12.5px; color: #64748b;">
+      <p>&copy; 2026 Lại Thế Đạt — ĐH Lạc Hồng Software Engineering Portfolio (2025 - 2029). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const words = ["Software Developer", "MS SQL Server Enthusiast", "Python Algorithms Creator", "MOS International Certified"];
+    let i = 0;
+    let timer;
+
+    function typingEffect() {
+      let word = words[i].split("");
+      var loopTyping = function() {
+        if (word.length > 0) {
+          document.getElementById('typing-text').innerHTML += word.shift();
+        } else {
+          setTimeout(deletingEffect, 2000);
+          return false;
+        }
+        timer = setTimeout(loopTyping, 100);
+      };
+      loopTyping();
+    }
+
+    function deletingEffect() {
+      let word = words[i].split("");
+      var loopDeleting = function() {
+        if (word.length > 0) {
+          word.pop();
+          document.getElementById('typing-text').innerHTML = word.join("");
+        } else {
+          if (words.length > (i + 1)) {
+            i++;
+          } else {
+            i = 0;
+          }
+          typingEffect();
+          return false;
+        }
+        timer = setTimeout(loopDeleting, 50);
+      };
+      loopDeleting();
+    }
+    typingEffect();
+
+    const sections = document.querySelectorAll('section');
+    const topTocItems = document.querySelectorAll('#top-toc .toc-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      topTocItems.forEach(item => {
+        item.classList.remove('toc-active');
+        if (item.getAttribute('href') === `#${current}`) {
+          item.classList.add('toc-active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
